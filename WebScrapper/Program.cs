@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using ClosedXML.Excel;
 using HtmlAgilityPack;
 using WebScrapper.Model;
 
@@ -75,7 +78,11 @@ namespace WebScrapper
 
             XLWorkbook wb = new XLWorkbook();
             wb.Worksheets.Add(dt, "WorksheetName");
-            wb.SaveAs(@"d:\clientes.xlsx", false);
+            wb.SaveAs(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),@"clientes.xlsx"), false);
+
+            Console.WriteLine("Saved in {0}", Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"clientes.xlsx"));
+            Console.ReadKey();
+
         }
 
 
